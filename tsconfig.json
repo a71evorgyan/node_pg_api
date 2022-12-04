@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "baseUrl": ".",
+		"outDir": "./dist",
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"target": "es6",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "pretty": true,
+    "typeRoots": ["node_modules/@types"],
+  },
+  "include": [
+    "src/**/*", "src/db/knexfile.ts", "20221204162101_init.ts",
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

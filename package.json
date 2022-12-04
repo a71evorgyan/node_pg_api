@@ -1,0 +1,34 @@
+{
+  "name": "node_task",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:a71evorgyan/node_task.git",
+  "author": "a71evorgyan <arminegevorgyan1993@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint:fix": "tsc --noEmit && eslint \"**/*.{js,ts,d.ts}\" --quiet --fix",
+    "db:migrate": "knex migrate:latest --knexfile ./dist/src/db/knexfile.ts",
+    "db:down": "npx knex migrate:down --knexfile ./dist/src/db/knexfile.ts",
+    "db:seed": "npx knex seed:run --knexfile ./dist/src/db/knexfile.ts",
+    "build": "rimraf dist && tsc -p ./tsconfig.json",
+    "start": "yarn build && node dist/src/server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.29.0",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "objection": "^3.0.1",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "ts-node": "^10.9.1"
+  }
+}
