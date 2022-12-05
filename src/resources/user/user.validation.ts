@@ -1,14 +1,28 @@
-import Joi from 'joi';
+import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+export class signUpRequest {
+  @MinLength(4)
+  @IsNotEmpty()
+  @IsString()
+    name!: string;
 
-const signUp = Joi.object({
-  name: Joi.string().min(3).required(),
-  login: Joi.string().min(3).required(),
-  password: Joi.string().min(6).required(),
-});
+  @MinLength(4)
+  @IsNotEmpty()
+  @IsString()
+    login!: string;
 
-const signIn = Joi.object({
-  login: Joi.string().required(),
-  password: Joi.string().required(),
-});
+  @MinLength(4)
+  @MaxLength(20)
+  @IsNotEmpty()
+  @IsString()
+    password!: string;
+}
 
-export default { signUp, signIn };
+export class signInRequest {
+  @IsNotEmpty()
+  @IsString()
+    login!: string;
+
+  @IsNotEmpty()
+  @IsString()
+    password!: string;
+}

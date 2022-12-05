@@ -1,9 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import HttpStatus from 'http-status-codes';
 import { HttpException } from '../../utils';
-import { validationMiddleware } from '../../middlewares/validationMiddleware';
 import { IController } from '../../types';
 import { UserService } from './user.service';
-import validate from './user.validation';
+import { validationBodyMiddleware } from '../../middlewares/validationMiddlware';
+import { signUpRequest, signInRequest } from './user.validation';
 
 export class UserController implements IController {
   public path = '/users';
@@ -15,8 +16,8 @@ export class UserController implements IController {
   }
 
   private initialiseRoutes(): void {
-    this.router.post(`${this.path}/signup`, validationMiddleware(validate.signUp), this.signUp);
-    this.router.post(`${this.path}/signin`, validationMiddleware(validate.signIn), this.signIn);
+    this.router.post(`${this.path}/signup`, validationBodyMiddleware(signUpRequest), this.signUp);
+    this.router.post(`${this.path}/signin`, validationBodyMiddleware(signInRequest), this.signIn);
   }
 
   private signUp = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -25,9 +26,9 @@ export class UserController implements IController {
 
       const token = await this.UserService.signUp(name, login, password);
 
-      res.status(201).json({ token });
+      res.status(HttpStatus.CREATED).json({ token });
     } catch (error) {
-      next(new HttpException(400, error.message));
+      next(new HttpException(HttpStatus.BAD_REQUEST, error.message));
     }
   };
 
@@ -37,9 +38,9 @@ export class UserController implements IController {
 
       const token = await this.UserService.signIn(login, password);
 
-      res.status(200).json({ token });
+      res.status(HttpStatus.OK).json({ token });
     } catch (error) {
-      next(new HttpException(400, error.message));
+      next(new HttpException(HttpStatus.BAD_REQUEST, error.message));
     }
   };
 }
