@@ -1,8 +1,10 @@
-import '../../env';
+
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../../../.env' });
 import type { Knex } from 'knex';
 import { POSTGREDB_NAME, POSTGREDB_PASSWORD, POSTGREDB_USER } from '../utils';
 
-export const config: { [key: string]: Knex.Config } = {
+const config: { [key: string]: Knex.Config } = {
   development: {
     client: 'postgresql',
     connection: {
@@ -22,3 +24,4 @@ export const config: { [key: string]: Knex.Config } = {
     },
   }
 };
+export default config;

@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 import { Role } from '../../types';
-import { getHashedPassword } from '../../utils';
+import { generateHashedPassword } from '../../utils';
 
 export async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
@@ -9,24 +9,24 @@ export async function seed(knex: Knex): Promise<void> {
   // Inserts seed entries
   await knex('user').insert([
     {
-      id: 1,
+      id: '7127d60e-ad99-4bf3-971e-f1ad859ad883',
       name: 'Member',
       login: 'member',
-      password: await getHashedPassword('member'),
+      password: await generateHashedPassword('member'),
       role: Role.member
     },
     {
-      id: 2,
+      id: '7127d60e-ad99-4bf3-971e-f1ad859dd8a3',
       name: 'Admin',
       login: 'admin',
-      password: await getHashedPassword('admin'),
+      password: await generateHashedPassword('admin'),
       role: Role.admin
     },
     {
-      id: 3,
+      id: '8127d60e-ad99-4bf3-971e-f1ad859ad8a3',
       name: 'Moderator',
       login: 'moderator',
-      password: await getHashedPassword('moderator'),
+      password: await generateHashedPassword('moderator'),
       role: Role.moderator
     }
   ]);

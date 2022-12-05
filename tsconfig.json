@@ -17,7 +17,7 @@
     "typeRoots": ["node_modules/@types"],
   },
   "include": [
-    "src/**/*", "src/db/knexfile.ts", "20221204162101_init.ts",
+    "src/**/*", "src/db/knexfile.ts",
   ],
   "exclude": [
     "node_modules",

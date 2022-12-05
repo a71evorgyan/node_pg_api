@@ -1,12 +1,8 @@
 import '../env';
-import express from 'express';
-import { setupDb } from './db/db-setup';
-import { router } from './routes';
+import { App } from './app';
+import { UserController } from './resources/user/user.controller';
 import { PORT, URI } from './utils';
 
-setupDb();
+const app = new App(Number(PORT), URI, [new UserController()]);
 
-const app = express();
-app.use(express.json());
-app.use(router);
-app.listen(PORT, () => console.log(`Server is running at ${URI}`));
+app.listen();

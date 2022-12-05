@@ -4,7 +4,7 @@ import { Role } from '../../types';
 export async function up(knex: Knex): Promise<void> {
   return knex.schema
     .createTable('user', (table) => {
-      table.increments('id').primary();
+      table.uuid('id').primary().unique().defaultTo(knex.raw('gen_random_uuid()'));
       table.string('name').notNullable();
       table.string('login').notNullable().unique();
       table.string('password').notNullable();

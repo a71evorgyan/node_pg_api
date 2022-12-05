@@ -3,11 +3,11 @@ import { Knex } from 'knex';
 export async function up(knex: Knex): Promise<void> {
   return knex.schema
     .createTable('article', (table) => {
-      table.increments('id').primary();
+      table.uuid('id').primary().unique().defaultTo(knex.raw('gen_random_uuid()'));
       table.string('name').notNullable(),
       table.string('content').notNullable();
-      table.integer('userId').notNullable().references('id').inTable('user');
-      table.integer('categoryId').notNullable().references('id').inTable('category');
+      table.uuid('userId').notNullable().references('id').inTable('user');
+      table.uuid('categoryId').notNullable().references('id').inTable('category');
       table.timestamps(true, true);
     });
 }
