@@ -15,30 +15,30 @@ export class App {
     this.port = port;
     this.uri = uri;
 
-    this.initialiseDatabaseConnection();
-    this.initialiseMiddleware();
-    this.initialiseControllers(controllers);
-    this.initialiseErrorHandling();
+    this.initializeDatabaseConnection();
+    this.initializeMiddleware();
+    this.initializeControllers(controllers);
+    this.initializeErrorHandling();
   }
 
-  private initialiseMiddleware(): void {
+  private initializeMiddleware(): void {
     this.express.use(cors());
     this.express.use(json());
     this.express.use(urlencoded({ extended: false }));
     this.express.use(express.static(path.join(__dirname, '../uploads')));
   }
 
-  private initialiseDatabaseConnection(): void {
+  private initializeDatabaseConnection(): void {
     setupDb();
   }
 
-  private initialiseControllers(controllers: IController[]): void {
+  private initializeControllers(controllers: IController[]): void {
     controllers.forEach((controller: IController) => {
       this.express.use('/api', controller.router);
     });
   }
 
-  private initialiseErrorHandling(): void {
+  private initializeErrorHandling(): void {
     this.express.use(errorMiddleware);
   }
 
