@@ -25,7 +25,7 @@ export const authenticate = async (req: any, res: Response, next: NextFunction):
       return next(new HttpException(HttpStatus.UNAUTHORIZED, Unauthorized));
     }
 
-    req.user = user; //TODO
+    req.user = user;
 
     return next();
   } catch (error) {

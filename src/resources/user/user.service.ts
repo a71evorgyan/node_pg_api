@@ -1,4 +1,4 @@
-import { generateHashedPassword, InvalidCredentials, UserCreationFailed, UserLoginExists, UserNotFound, validateHashedPassword } from '../../utils';
+import { generateHashedPassword, InvalidCredentials, UserLoginExists, UserNotFound, validateHashedPassword } from '../../utils';
 import { createToken } from '../../utils';
 import { UserModel } from './user.model';
 
@@ -28,10 +28,10 @@ export class UserService {
 
   public async signIn(login: string, password: string): Promise<string | Error> {
     try {
-      const user: any = await this.userModel.query().findOne({ login }); // TODO fix type
+      const user: any = await this.userModel.query().findOne({ login });
 
       if (!user) {
-        throw new Error(UserNotFound);
+        throw new Error(InvalidCredentials);
       }
 
       const isValidPassword = await validateHashedPassword(password, user.password);
@@ -42,7 +42,7 @@ export class UserService {
         throw new Error(InvalidCredentials);
       }
     } catch (error) {
-      throw new Error(UserCreationFailed);
+      throw new Error(error.message);
     }
   }
 }

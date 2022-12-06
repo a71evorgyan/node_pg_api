@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "f35ab3e3-9974-4c65-905f-d58a11e1f653",
+		"name": "node-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5964324"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.e30.xOUVmTQG_eYOKGbwWJvAhAEhYoeZBFb2uGyy9aiOHyk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"login\": \"Test\",\n    \"password\": \"testPassword\",\n    \"name\": \"testName\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.e30.xOUVmTQG_eYOKGbwWJvAhAEhYoeZBFb2uGyy9aiOHyk",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"login\": \"admin\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/users/signin",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxMjdkNjBlLWFkOTktNGJmMy05NzFlLWYxYWQ4NTlkZDhhMyIsImlhdCI6MTY3MDMzMTcwMSwiZXhwIjoxNjcwNDE4MTAxfQ.iiPD7Z16tu0EH40RnBCZWzwL2tgynO5ZlyHYrk6P0ro",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"testCategoryName\",\n    \"description\": \"testDescription\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/categories/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categories",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMjdkNjBlLWFkOTktNGJmMy05NzFlLWYxYWQ4NTlhZDhhMyIsInJvbGUiOiJNT0RFUkFUT1IiLCJpYXQiOjE2NzAyNTg1NzMsImV4cCI6MTY3MDM0NDk3M30.fVgza1BMC3doYGigDzZX-l00LpPmF3-A6Y1-V36GbNA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/categories/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categories",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "category",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxMjdkNjBlLWFkOTktNGJmMy05NzFlLWYxYWQ4NTlkZDhhMyIsImlhdCI6MTY3MDI2MjIxMCwiZXhwIjoxNjcwMzQ4NjEwfQ.vqCieTCNj5-rBgcsQHA17gCrdrOy_VKM1j2SAWKEnCE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/categories?categoryId=98f16b7c-7bc8-46fe-85a6-3e58462013e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "98f16b7c-7bc8-46fe-85a6-3e58462013e9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMjdkNjBlLWFkOTktNGJmMy05NzFlLWYxYWQ4NTlhZDhhMyIsInJvbGUiOiJNT0RFUkFUT1IiLCJpYXQiOjE2NzAyNTg1NzMsImV4cCI6MTY3MDM0NDk3M30.fVgza1BMC3doYGigDzZX-l00LpPmF3-A6Y1-V36GbNA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "ArticleName",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Test %img1% and test %img2% and test",
+							"type": "text"
+						},
+						{
+							"key": "categoryId",
+							"value": "c59a9138-0b51-4fd5-bdff-6844c01c349e",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "7127d60e-ad99-4bf3-971e-f1ad859ad883",
+							"type": "text"
+						},
+						{
+							"key": "file[]",
+							"type": "file",
+							"src": [
+								"/Users/macbookpro/Downloads/camera.jpeg",
+								"/Users/macbookpro/Downloads/camera1.jpeg"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/articles/publish",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"articles",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "articles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgxMjdkNjBlLWFkOTktNGJmMy05NzFlLWYxYWQ4NTlhZDhhMyIsInJvbGUiOiJNT0RFUkFUT1IiLCJpYXQiOjE2NzAyNTg1NzMsImV4cCI6MTY3MDM0NDk3M30.fVgza1BMC3doYGigDzZX-l00LpPmF3-A6Y1-V36GbNA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"aaaahhhhh\",\n    \"description\": \"sdfjskhfjds sdjfjdjdjdj\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/articles/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"articles",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,6 +1,6 @@
 import { forEach } from 'lodash';
 import { convertToHTML } from '../../utils';
-import { ArticleModel } from './article.mode';
+import { ArticleModel } from './article.model';
 
 export class ArticleService {
   private articleModel = ArticleModel;
@@ -13,7 +13,7 @@ export class ArticleService {
           contentImages[`%${file.originalname.match(/^(.*?)\./)[1]}%`] = `<img src=${file.path}>`;
         })
       }
-      
+
       const htmlContent = convertToHTML(content, contentImages);
 
       const article = await this.articleModel.query().insert({

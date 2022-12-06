@@ -18,6 +18,4 @@ export class CategoryRequest {
   @IsNotEmpty()
   @IsString()
     userId!: string;
-
-    file: string[]
 }

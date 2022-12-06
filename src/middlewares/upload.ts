@@ -1,5 +1,7 @@
+import HttpStatus from 'http-status-codes';
 import path from 'path';
 import multer from 'multer';
+import { HttpException, WRONG_FILE_TYPE } from '../utils';
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -17,8 +19,7 @@ export const upload = multer ({
     if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
       callback(null, true)
     } else {
-      console.log('only images supported');
-      callback(null, false);
+      callback(new HttpException(HttpStatus.BAD_REQUEST, WRONG_FILE_TYPE));
     }
   }
 })
