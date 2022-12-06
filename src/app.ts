@@ -1,4 +1,5 @@
 import express, { Application, json, urlencoded } from 'express';
+import path from 'path';
 import cors from 'cors';
 import { setupDb } from './db/db-setup';
 import { errorMiddleware } from './middlewares/errorMiddleware';
@@ -24,6 +25,7 @@ export class App {
     this.express.use(cors());
     this.express.use(json());
     this.express.use(urlencoded({ extended: false }));
+    this.express.use(express.static(path.join(__dirname, '../uploads')));
   }
 
   private initialiseDatabaseConnection(): void {

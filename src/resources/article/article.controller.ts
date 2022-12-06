@@ -7,6 +7,8 @@ import { CategoryRequest } from './article.validation';
 import { authorize } from '../../middlewares/authorizationMiddlware';
 import { HttpException } from '../../utils';
 import { ArticleService } from './article.service';
+import { upload } from '../../middlewares/upload';
+import { forEach } from 'lodash';
 
 export class ArticleController implements IController {
   public path = '/articles';
@@ -18,15 +20,15 @@ export class ArticleController implements IController {
   }
 
   private initialiseRoutes(): void {
-    this.router.post(`${this.path}/publish`, [validationBodyMiddleware(CategoryRequest), authenticate, authorize([Role.moderator])], this.createArticle);
+    this.router.post(`${this.path}/publish`, [authenticate, authorize([Role.moderator]), upload.array('file[]'), validationBodyMiddleware(CategoryRequest)], this.createArticle);
     this.router.get(`${this.path}/list`, [authenticate, authorize([Role.admin, Role.moderator, Role.member])], this.getArticles);
   }
 
   private createArticle = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
-      const { name, content, userId, categoryId } = req.body;
+      const { name, userId, categoryId, content } = req.body;
 
-      const article = await this.ArticleService.createArticle(name, content, userId, categoryId);
+      const article = await this.ArticleService.createArticle(name, content, userId, categoryId, req.files as Express.Multer.File[]);
 
       res.status(HttpStatus.CREATED).json({ article });
     } catch (error) {

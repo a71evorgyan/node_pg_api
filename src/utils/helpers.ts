@@ -27,3 +27,21 @@ export const verifyToken = async (token: string): Promise<jwt.VerifyErrors | ITo
     );
   });
 };
+
+export const convertToHTML = (text: string, imagePaths: Record<string, string>) => {
+  // convert image placeholders with image paths
+  text = text.replace(/%(.*?)%/g, function(imagePlaseHolder: string) {
+    return imagePaths[imagePlaseHolder] || imagePlaseHolder;
+  });
+
+  // Replace line breaks with <br> tags
+  let html = text.replace(/\n/g, "<br>");
+
+  // Add <p> tags around paragraphs
+  html = html.replace(/<br>\s*<br>/g, "</p><p>");
+
+  // Wrap in <html> and <body> tags
+  html = "<html><body>" + html + "</body></html>";
+
+  return html;
+}

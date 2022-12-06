@@ -1,13 +1,24 @@
-import { ArticleModel } from "./article.mode";
+import { forEach } from 'lodash';
+import { convertToHTML } from '../../utils';
+import { ArticleModel } from './article.mode';
 
 export class ArticleService {
   private articleModel = ArticleModel;
 
-  public async createArticle(name: string, content: string, userId: string, categoryId: string): Promise<ArticleModel> {
+  public async createArticle(name: string, content: string, userId: string, categoryId: string, files: Express.Multer.File[]): Promise<ArticleModel> {
     try {
+      const contentImages = {};
+      if (files) {
+        forEach(files, (file: Express.Multer.File) => {
+          contentImages[`%${file.originalname.match(/^(.*?)\./)[1]}%`] = `<img src=${file.path}>`;
+        })
+      }
+      
+      const htmlContent = convertToHTML(content, contentImages);
+
       const article = await this.articleModel.query().insert({
         name: name.toLocaleLowerCase(),
-        content,
+        content: htmlContent,
         userId,
         categoryId
       });

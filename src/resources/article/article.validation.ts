@@ -9,7 +9,7 @@ export class CategoryRequest {
   @MinLength(10)
   @IsNotEmpty()
   @IsString()
-    content!: string; // TODO file or text
+    content!: string;
 
   @IsNotEmpty()
   @IsString()
@@ -18,4 +18,6 @@ export class CategoryRequest {
   @IsNotEmpty()
   @IsString()
     userId!: string;
+
+    file: string[]
 }
