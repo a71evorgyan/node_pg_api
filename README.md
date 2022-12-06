@@ -34,7 +34,7 @@ For articles administration please use placeholder `%imageName%` (image name wit
 ```
 Lorem ipsum dolor %img1% sit amet, consectetur %img2% adipiscing elit, sed do eiusmod tempor incididunt %img3% ut labore
 ```
-2. upload corresponding images
+2. Upload corresponding images
 ```
 img1.png
 img2.png

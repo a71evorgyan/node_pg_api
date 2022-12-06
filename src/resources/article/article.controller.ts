@@ -7,7 +7,7 @@ import { CategoryRequest } from './article.validation';
 import { authorize } from '../../middlewares/authorizationMiddlware';
 import { HttpException } from '../../utils';
 import { ArticleService } from './article.service';
-import { upload } from '../../middlewares/upload';
+import { upload } from '../../middlewares/uploadMiddlware';
 import { forEach } from 'lodash';
 
 export class ArticleController implements IController {
